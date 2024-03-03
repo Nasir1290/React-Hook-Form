@@ -3,10 +3,10 @@ import React from "react";
 export default function Field({ label, children, htmlFor, error }) {
   const id = htmlFor || getChildId(children);
   return (
-    <div>
-      {label && <label htmlFor={id}>{label}</label>}
+    <div className=" flex flex-col justify-start items-start w-full m-2 p-0">
+      {label && <label className=" text-lg font-bold mb-1" htmlFor={id}>{label}</label>}
       {children}
-      {!!error && <div> {error.message} </div>}
+      {!!error && <div className=" text-red-500 text-md"> {error.message} </div>}
     </div>
   );
 }
