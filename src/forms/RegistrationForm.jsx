@@ -3,7 +3,7 @@ import FieldSet from "../components/FieldSet";
 import Field from "../components/Field";
 import { useForm } from "react-hook-form";
 
-export default function LoginForm() {
+export default function RegistrationForm() {
   const {
     register,
     handleSubmit,
