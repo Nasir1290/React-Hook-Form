@@ -2,21 +2,27 @@ import React from "react";
 import FieldSet from "../components/FieldSet";
 import Field from "../components/Field";
 import { useForm } from "react-hook-form";
+import { root } from "postcss";
 
 export default function LoginForm() {
-
-
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm();
 
-
   const submitForm = (formData) => {
+    const user = { email: "abc@abc", password: "abcdefgh" };
+    const found =
+      formData.email === user.email && formData.password === user.password;
+      if(!found){
+        setError(root,{
+            message:`User with email ${formData.email} not found`
+        })
+      }
     console.log(formData);
   };
-
 
   return (
     <div className=" flex flex-col justify-center items-center mt-6">
@@ -27,7 +33,9 @@ export default function LoginForm() {
               {...register("email", {
                 required: "Email is required",
               })}
-              className=" p-2 box-border  border-2 border-gray-600 w-[300px] rounded-md"
+              className={` p-2 box-border  border-2 outline-none  w-[300px] rounded-md ${
+                !!errors.email ? "border-red-500" : "border-gray-600"
+              }`}
               type="email"
               id="email"
               name="email"
@@ -43,7 +51,9 @@ export default function LoginForm() {
                   message: "Password must be atleast 8 charecter...",
                 },
               })}
-              className=" p-2 box-border border-2 border-gray-900 w-[300px] rounded-md"
+              className={` p-2 box-border  border-2 outline-none  w-[300px] rounded-md ${
+                !!errors.password ? "border-red-500" : "border-gray-600"
+              }`}
               type="password"
               id="password"
               name="password"
