@@ -1,10 +1,10 @@
 import React from 'react'
+import LoginForm from './forms/LoginForm'
 
 export default function App() {
   return (
     <div>
-      <h1 className=' text-2xl'>Hello</h1>
-      <input className=' input' type="text" placeholder='Enter something...' />
+      <LoginForm/>
     </div>
   )
 }
